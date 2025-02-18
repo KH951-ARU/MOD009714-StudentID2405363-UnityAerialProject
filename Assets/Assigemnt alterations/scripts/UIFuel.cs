@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,18 +9,13 @@ public class UIFuel : MonoBehaviour
 
     [SerializeField] private Image FuelBarSprite;
 
-    public void UpdateFuelBar( float maxFuel, float currentFuel)
-    { 
+    public void UpdateFuelBar(float maxFuel, float currentFuel)
+    {
         FuelBarSprite.fillAmount = currentFuel / maxFuel;
     }
 
 
 }
-
-
-
-
-
 
 
 
