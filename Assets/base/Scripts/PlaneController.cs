@@ -85,6 +85,8 @@ public class PlaneController : MonoBehaviour
 
     void drainFuel()
     {
+
+        delaySystem = 1f;
         currentFuel = maxFuel;
         
         if (currentFuel <= 0)
@@ -94,6 +96,7 @@ public class PlaneController : MonoBehaviour
         else
         {
             print("losing fuel"+currentFuel);
+            print(delaySystem * Time.deltaTime);
         }
     }
 
