@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -71,33 +72,11 @@ public class PlaneController : MonoBehaviour
         transform.position += transform.forward * throttleInput * Time.deltaTime;
     }
 
-    // Alteration to script for UI fuel bar
-    [SerializeField] private UIFuel fuel;
-    private float maxFuel;
-    private float currentFuel;
-    private void Start()
-    {
-        currentFuel = 100f;
-        maxFuel = 100f;
-        currentFuel = maxFuel;
-       
+  
+
+ 
     }
 
-    void drainFuel()
-    {
 
-        delaySystem = 1f;
-        currentFuel = maxFuel;
-        
-        if (currentFuel <= 0)
-        {
-            currentFuel -= 1f;
-        }
-        else
-        {
-            print("losing fuel"+currentFuel);
-            print(delaySystem * Time.deltaTime);
-        }
-    }
-
+    
 }
