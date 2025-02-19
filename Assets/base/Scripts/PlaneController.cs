@@ -42,8 +42,13 @@ public class PlaneController : MonoBehaviour
         ReadInput();
         HandleThrottle();
         HandleFlightControls();
-        drainFuel();
-        fuel.UpdateFuelBar(maxFuel,currentFuel);
+
+        // alteration to the original script
+        if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.D))
+        {
+            fuelDrain(1);
+        }
+        
     }
 
     private void ReadInput()
@@ -71,12 +76,30 @@ public class PlaneController : MonoBehaviour
 
         transform.position += transform.forward * throttleInput * Time.deltaTime;
     }
+    // alteration to the original script
 
-  
+    public int maxFuel = 100;   
+    public int currentFuel;
 
- 
+    public Fuelbar Fuelbar;
+    private void Start()
+    {
+        currentFuel = maxFuel;
+        Fuelbar.SetMaxFuel(maxFuel);
     }
-
-
     
+    void fuelDrain(int fuelLoss)
+    {         
+        currentFuel -= fuelLoss;
+
+        Fuelbar.SetHealth(currentFuel);
+    }
+    
+
+
+
+
+
+
+
 }
