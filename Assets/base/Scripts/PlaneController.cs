@@ -48,6 +48,7 @@ public class PlaneController : MonoBehaviour
         {
             fuelDrain(1);// Drain 1 fuel
         }
+        Debug.Log(Fuelbar.slider.value.ToString());
         if (Fuelbar.slider.value <= 0) // If the fuel bar value is less than or equal to 0
         {
             emptyTank(); // Call the emptyTank method
