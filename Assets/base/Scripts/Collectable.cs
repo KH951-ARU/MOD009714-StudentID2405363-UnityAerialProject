@@ -59,8 +59,8 @@ public class Collectable : MonoBehaviour
 
     private Vector3 CalculateMeshCentre(Collider collider)
     {
-        MeshFilter meshFilter = collider.GetComponent<MeshFilter>();
-        if (meshFilter != null && meshFilter.sharedMesh != null)
+        MeshFilter meshFilter = collider.GetComponent<MeshFilter>(); 
+        if (meshFilter != null && meshFilter.sharedMesh != null) 
         {
             // Transform the mesh's local bounds center into world space
             Bounds bounds = meshFilter.sharedMesh.bounds;

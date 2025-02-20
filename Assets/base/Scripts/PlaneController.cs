@@ -44,11 +44,14 @@ public class PlaneController : MonoBehaviour
         HandleFlightControls();
 
         // alteration to the original script
-        if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.D)) // If the player presses the W, A, S, or D key
         {
-            fuelDrain(1);
+            fuelDrain(1);// Drain 1 fuel
         }
-        
+        if (Fuelbar.slider.value <= 0) // If the fuel bar value is less than or equal to 0
+        {
+            emptyTank(); // Call the emptyTank method
+        }
     }
 
     private void ReadInput()
@@ -58,7 +61,7 @@ public class PlaneController : MonoBehaviour
         throttleDelta = throttleAction.action.ReadValue<float>();     // Left Thumbstick or R/F
     }
 
-    private void HandleThrottle()
+    private void HandleThrottle() 
     {
         throttleInput += throttleDelta * throttleSpeed * Time.deltaTime;
         throttleInput = Mathf.Clamp(throttleInput, minSpeed, maxSpeed);
@@ -78,24 +81,32 @@ public class PlaneController : MonoBehaviour
     }
     // alteration to the original script
 
-    public int maxFuel = 100;   
-    public int currentFuel;
+    public int maxFuel = 100;   // Maximum fuel capacity
+    public int currentFuel;  // Current fuel level 
 
-    public Fuelbar Fuelbar;
-    private void Start()
+    public Fuelbar Fuelbar; // Reference to the Fuelbar script
+    private void Start() // Called before the first frame update
     {
-        currentFuel = maxFuel;
-        Fuelbar.SetMaxFuel(maxFuel);
+        currentFuel = maxFuel;  // Set the current fuel to the maximum fuel
+        Fuelbar.SetMaxFuel(maxFuel);    // Set the maximum fuel level
     }
     
-    void fuelDrain(int fuelLoss)
+    void fuelDrain(int fuelLoss)  // Method to drain fuel
     {         
-        currentFuel -= fuelLoss;
+        currentFuel -= fuelLoss;  // Decrease the current fuel level
 
-        Fuelbar.SetHealth(currentFuel);
+        Fuelbar.SetHealth(currentFuel);  // Update the fuel bar
     }
     
+    void emptyTank()
+    {
+        if(currentFuel <= 0) // If the current fuel level is less than or equal to 0
+        {
+         gameObject.SetActive(false); // Deactivate the game object
+            print("Game Over!"); // Print "Game Over!" to the console
 
+        }
+    }
 
 
 
