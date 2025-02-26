@@ -1,4 +1,5 @@
 using System.Threading;
+using TMPro;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -53,6 +54,7 @@ public class PlaneController : MonoBehaviour
         {
             emptyTank(); // Call the emptyTank method
         }
+         
     }
 
     private void ReadInput()
@@ -85,6 +87,7 @@ public class PlaneController : MonoBehaviour
     public int maxFuel = 100;   // Maximum fuel capacity
     public int currentFuel;  // Current fuel level 
 
+    public TextMeshPro Text;
     public Fuelbar Fuelbar; // Reference to the Fuelbar script
     private void Start() // Called before the first frame update
     {
@@ -95,7 +98,7 @@ public class PlaneController : MonoBehaviour
     void fuelDrain(int fuelLoss)  // Method to drain fuel
     {         
         currentFuel -= fuelLoss;  // Decrease the current fuel level
-
+        
         Fuelbar.SetHealth(currentFuel);  // Update the fuel bar
     }
     
