@@ -42,7 +42,7 @@ public class PlaneController : MonoBehaviour
     {
         ReadInput();
         HandleThrottle();
-        HandleFlightControls();
+        HandleFlightControls(); 
 
         // alteration to the original script
         if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.D)) // If the player presses the W, A, S, or D key
