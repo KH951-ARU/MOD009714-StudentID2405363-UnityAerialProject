@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using System.Collections;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -12,16 +14,22 @@ public class Collectable : MonoBehaviour
     public float shrinkDuration = 1f; // Duration of the shrinking animation
     public float spinSpeed = 360f; // Spin speed in degrees per second
 
-    private Vector3 targetPosition; // Final position to zip toward
 
+    private Vector3 targetPosition; // Final position to zip toward
+    public GameObject playerPlane;
     void Start()
     {
+    playerPlane = GameObject.FindWithTag("PlaneACT");
+        pc = playerPlane.GetComponent<PlaneController>();
+        
+
         // Get or add the AudioSource component
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+         
 
         // Configure the AudioSource
         audioSource.playOnAwake = false;
@@ -54,13 +62,15 @@ public class Collectable : MonoBehaviour
 
             // Start the zip, shrink, and spin effect
             StartCoroutine(ZipShrinkAndSpin());
+
+            ReturnFuel(); // Return fuel
         }
     }
 
     private Vector3 CalculateMeshCentre(Collider collider)
     {
-        MeshFilter meshFilter = collider.GetComponent<MeshFilter>(); 
-        if (meshFilter != null && meshFilter.sharedMesh != null) 
+        MeshFilter meshFilter = collider.GetComponent<MeshFilter>();
+        if (meshFilter != null && meshFilter.sharedMesh != null)
         {
             // Transform the mesh's local bounds center into world space
             Bounds bounds = meshFilter.sharedMesh.bounds;
@@ -95,7 +105,6 @@ public class Collectable : MonoBehaviour
 
             yield return null;
         }
-
         // Ensure the object is fully shrunk and at the target position
         objectTransform.localScale = Vector3.zero;
 
@@ -105,4 +114,21 @@ public class Collectable : MonoBehaviour
         // Deactivate the object
         gameObject.SetActive(false);
     }
+
+    // alterations to base script
+    public Fuelbar Fuelbar; // Reference to the Fuelbar script
+    public PlaneController pc; // Reference to the PlaneController script
+    public int returnFuel = 10; // Amount of fuel to return
+    private float actualFuel;
+
+
+    public void ReturnFuel()
+    {
+
+        pc.currentFuel += returnFuel; // Set the current fuel level
+    }
 }
+
+  
+       
+

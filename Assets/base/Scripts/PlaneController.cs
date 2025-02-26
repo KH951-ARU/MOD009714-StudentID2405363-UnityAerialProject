@@ -46,7 +46,7 @@ public class PlaneController : MonoBehaviour
         // alteration to the original script
         if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.D)) // If the player presses the W, A, S, or D key
         {
-            fuelDrain(1);// Drain 1 fuel
+            fuelDrain(2);// Drain 2 fuel
         }
         Debug.Log(Fuelbar.slider.value.ToString());
         if (Fuelbar.slider.value <= 0) // If the fuel bar value is less than or equal to 0

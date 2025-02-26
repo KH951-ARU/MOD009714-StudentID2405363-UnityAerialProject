@@ -8,6 +8,8 @@ TagManager:
   - IglooScreen
   - 3D_UI_Element
   - PickUp
+  - Obstacle
+  - PlaneACT
   layers:
   - Default
   - TransparentFX
