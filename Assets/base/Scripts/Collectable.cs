@@ -64,6 +64,7 @@ public class Collectable : MonoBehaviour
             StartCoroutine(ZipShrinkAndSpin());
 
             ReturnFuel(); // Return fuel
+            IncreaseTime(); // Increase time 
         }
     }
 
@@ -118,8 +119,15 @@ public class Collectable : MonoBehaviour
     // alterations to base script
     public Fuelbar Fuelbar; // Reference to the Fuelbar script
     public PlaneController pc; // Reference to the PlaneController script
+    public Timer timer; // Reference to the Timer script
     public int returnFuel = 10; // Amount of fuel to return
-    private float actualFuel;
+    public int timerBumpUp = 10;
+    
+    public void IncreaseTime()
+    {         
+       timer.currentTime = (timer.currentTime + timerBumpUp) ; // Increase the time by 10 seconds
+        print("Time increased by 10 seconds");
+    }
 
 
     public void ReturnFuel()

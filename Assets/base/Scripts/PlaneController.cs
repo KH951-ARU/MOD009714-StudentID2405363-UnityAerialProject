@@ -36,6 +36,7 @@ public class PlaneController : MonoBehaviour
         pitchRollAction.action.Disable();
         yawAction.action.Disable();
         throttleAction.action.Disable();
+        PlaneisDestroy = true;
     }
 
     private void Update()
@@ -83,7 +84,7 @@ public class PlaneController : MonoBehaviour
         transform.position += transform.forward * throttleInput * Time.deltaTime;
     }
     // alteration to the original script
-
+    public bool PlaneisDestroy;
     public int maxFuel = 100;   // Maximum fuel capacity
     public int currentFuel;  // Current fuel level 
 
