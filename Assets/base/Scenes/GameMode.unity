@@ -3219,6 +3219,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6834157195795561877, guid: 51b508c628cb89b45b090d5e81313144,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8952506463165413150}
+    - targetCorrespondingSourceObject: {fileID: 6834157195795561877, guid: 51b508c628cb89b45b090d5e81313144,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8952506463165413144}
   m_SourcePrefab: {fileID: 100100000, guid: 51b508c628cb89b45b090d5e81313144, type: 3}
 --- !u!1 &8952506463165413143 stripped
@@ -3336,6 +3340,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CrashAudioSource: {fileID: 8952506463165413144}
+--- !u!114 &8952506463165413150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952506463165413143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2509301b974a004bbd126288a894271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadioChatterAudioSource: {fileID: 8952506463165413144}
+  audioClips:
+  - {fileID: 8300000, guid: 52c6777c854487c4fb6fcc7f3e7e33eb, type: 3}
+  - {fileID: 8300000, guid: 27760a26cfd9b8749a23314e948e6fa3, type: 3}
+  - {fileID: 8300000, guid: d756f269e241e0b4681436c3214b0263, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
