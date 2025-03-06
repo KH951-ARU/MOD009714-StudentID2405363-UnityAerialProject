@@ -48,7 +48,7 @@ public class PlaneController : MonoBehaviour
         // alteration to the original script
         if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.D)) // If the player presses the W, A, S, or D key
         {
-            fuelDrain(2);// Drain 2 fuel
+            fuelDrain(5);// Drain 5 fuel
         }
         Debug.Log(Fuelbar.slider.value.ToString());
         if (Fuelbar.slider.value <= 0) // If the fuel bar value is less than or equal to 0
@@ -96,7 +96,7 @@ public class PlaneController : MonoBehaviour
         Fuelbar.SetMaxFuel(maxFuel);    // Set the maximum fuel level
     }
     
-    void fuelDrain(int fuelLoss)  // Method to drain fuel
+   public void fuelDrain(int fuelLoss)  // Method to drain fuel
     {         
         currentFuel -= fuelLoss;  // Decrease the current fuel level
         

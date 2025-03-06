@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlaneCrash : MonoBehaviour
 {
+    public PlaneController PlaneController;
     public AudioSource CrashAudioSource;
 
     private void OnTriggerEnter(Collider other)
@@ -11,6 +12,7 @@ public class PlaneCrash : MonoBehaviour
         if (other.gameObject.tag == "Obstacle")
         {
             CrashAudioSource.Play();
+            PlaneController.fuelDrain(10);
         }
     }
 }
