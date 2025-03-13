@@ -36,9 +36,9 @@ public class Timer : MonoBehaviour
        
                if (currentTime <= 0 && PlaneisDestroyed == false)
                {    
-            currentTime = 0;
+                currentTime = 0;
             
-            PlaneisDestroyed = true;
+                PlaneisDestroyed = true;
                           
                }
         if (PlaneisDestroyed == true && currentTime >= 0 )// if the plane is destroyed and the time is still running

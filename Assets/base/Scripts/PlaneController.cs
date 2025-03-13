@@ -83,7 +83,7 @@ public class PlaneController : MonoBehaviour
         throttleInput = Mathf.Clamp(throttleInput, minSpeed, maxSpeed);
     }
 
-    private void HandleFlightControls()
+    public void HandleFlightControls()
     {
         float pitch = pitchRollInput.y * pitchSpeed * Time.deltaTime;
         float roll = pitchRollInput.x * rollSpeed * Time.deltaTime;
@@ -129,7 +129,16 @@ public class PlaneController : MonoBehaviour
         }
     }
 
-
+    public void SetYaw()
+    {
+        float yaw = yawInput * yawSpeed * Time.deltaTime;
+        transform.Rotate(Vector3.up, yaw);
+    }
+    public void SetPitch()
+    {
+        float pitch = pitchRollInput.y * pitchSpeed * Time.deltaTime;
+        transform.Rotate(Vector3.right, pitch);
+    }
 
 
 
