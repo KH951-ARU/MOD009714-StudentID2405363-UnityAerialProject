@@ -30,7 +30,7 @@ public class Timer : MonoBehaviour
             currentTime -= 1 * Time.deltaTime;
             countdownText.text = ("Time:" + " " + currentTime.ToString("0")); // time is displayed in the game
             PlaneisDestroyed = PlaneController.GetComponent<PlaneController>().PlaneisDestroy; // checks if the plane is destroyed
-            GameOverCanvas.enabled = true; // game over canvas is disabled
+            GameOverCanvas.enabled = false; // game over canvas is disabled
         }
 
        
