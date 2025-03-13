@@ -1,5 +1,6 @@
 using System.Threading;
 using TMPro;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,6 +25,9 @@ public class PlaneController : MonoBehaviour
     public InputActionReference yawAction;      // Axis for yaw
     public InputActionReference throttleAction; // Axis for throttle
 
+    public float drainTime = 10f;
+    public float currentDrainTime = 2f;
+
     private void OnEnable()
     {
         pitchRollAction.action.Enable();
@@ -43,12 +47,20 @@ public class PlaneController : MonoBehaviour
     {
         ReadInput();
         HandleThrottle();
-        HandleFlightControls(); 
+        HandleFlightControls();
 
+        readyToDrain = (pitchRollInput.x != 0 || pitchRollInput.y != 0);
         // alteration to the original script
-        if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.D)) // If the player presses the W, A, S, or D key
+        if (readyToDrain ) // If the player presses the W, A, S, or D key
         {
-            fuelDrain(5);// Drain 5 fuel
+            currentDrainTime -= 1 * Time.deltaTime; // Decrease the current drain time
+            if (currentDrainTime <= 0f)
+            {
+                fuelDrain(6);// Drain 6 fuel
+                currentDrainTime = drainTime; // Reset the drain time
+                Fuelbar.slider.value = currentFuel; // Update the fuel bar
+                
+            }
         }
         Debug.Log(Fuelbar.slider.value.ToString());
         if (Fuelbar.slider.value <= 0) // If the fuel bar value is less than or equal to 0
@@ -86,14 +98,17 @@ public class PlaneController : MonoBehaviour
     // alteration to the original script
     public bool PlaneisDestroy;
     public int maxFuel = 100;   // Maximum fuel capacity
-    public int currentFuel;  // Current fuel level 
+    public int currentFuel;  // Current fuel level
+    public bool readyToDrain; // Boolean to check if the fuel can be drained
+    
 
     public TextMeshPro Text;
     public Fuelbar Fuelbar; // Reference to the Fuelbar script
     private void Start() // Called before the first frame update
     {
         currentFuel = maxFuel;  // Set the current fuel to the maximum fuel
-        Fuelbar.SetMaxFuel(maxFuel);    // Set the maximum fuel level
+        Fuelbar.SetMaxFuel(maxFuel);// Set the maximum fuel level
+        readyToDrain = false; // Set readyToDrain to false
     }
     
    public void fuelDrain(int fuelLoss)  // Method to drain fuel
@@ -101,6 +116,7 @@ public class PlaneController : MonoBehaviour
         currentFuel -= fuelLoss;  // Decrease the current fuel level
         
         Fuelbar.SetHealth(currentFuel);  // Update the fuel bar
+        readyToDrain = true; // Set readyToDrain to true
     }
     
     void emptyTank()
