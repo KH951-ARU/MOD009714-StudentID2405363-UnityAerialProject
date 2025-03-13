@@ -2742,6 +2742,11 @@ PrefabInstance:
       objectReference: {fileID: 1506260860}
     - target: {fileID: 1111608554900499595, guid: 7400535bcb7bd46409fc07bf0c901c3d,
         type: 3}
+      propertyPath: followObject
+      value: 
+      objectReference: {fileID: 2088478699407301039}
+    - target: {fileID: 1111608554900499595, guid: 7400535bcb7bd46409fc07bf0c901c3d,
+        type: 3}
       propertyPath: ndiResources
       value: 
       objectReference: {fileID: 11400000, guid: 69304b86950074db7ba8caba75214004,
