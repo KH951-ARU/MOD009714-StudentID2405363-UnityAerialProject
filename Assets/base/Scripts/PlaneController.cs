@@ -49,8 +49,8 @@ public class PlaneController : MonoBehaviour
         HandleThrottle();
         HandleFlightControls();
 
-        readyToDrain = (pitchRollInput.x != 0 || pitchRollInput.y != 0);
         // alteration to the original script
+        readyToDrain = (pitchRollInput.x != 0 || pitchRollInput.y != 0);
         if (readyToDrain ) // If the player presses the W, A, S, or D key
         {
             currentDrainTime -= 1 * Time.deltaTime; // Decrease the current drain time
@@ -79,22 +79,26 @@ public class PlaneController : MonoBehaviour
 
     private void HandleThrottle() 
     {
-        throttleInput += throttleDelta * throttleSpeed * Time.deltaTime;
-        throttleInput = Mathf.Clamp(throttleInput, minSpeed, maxSpeed);
+        throttleInput += throttleDelta * throttleSpeed * Time.deltaTime; // Increase throttle
+        throttleInput = Mathf.Clamp(throttleInput, minSpeed, maxSpeed); // Clamp throttle
     }
 
-    public void HandleFlightControls()
+    public void HandleFlightControls() //   Method to handle flight controls
     {
-        float pitch = pitchRollInput.y * pitchSpeed * Time.deltaTime;
-        float roll = pitchRollInput.x * rollSpeed * Time.deltaTime;
-        float yaw = yawInput * yawSpeed * Time.deltaTime;
+        float pitch = pitchRollInput.y * pitchSpeed * Time.deltaTime; // Calculate pitch
+        float roll = pitchRollInput.x * rollSpeed * Time.deltaTime;     // Calculate roll
+        float yaw = yawInput * yawSpeed * Time.deltaTime;              // Calculate yaw
 
-        transform.Rotate(Vector3.right, pitch);
-        transform.Rotate(Vector3.up, yaw);
-        transform.Rotate(Vector3.forward, -roll);
+        transform.Rotate(Vector3.right, pitch);     // Rotate the plane up and down
+        Debug.Log(pitch);
+        transform.Rotate(Vector3.up, yaw);         // Rotate the plane
+        transform.Rotate(Vector3.forward, -roll);  // Rotate the plane left and right
 
-        transform.position += transform.forward * throttleInput * Time.deltaTime;
+        transform.position += transform.forward * throttleInput * Time.deltaTime; // Move the plane
     }
+    
+    
+    
     // alteration to the original script
     public bool PlaneisDestroy;
     public int maxFuel = 100;   // Maximum fuel capacity
@@ -129,16 +133,7 @@ public class PlaneController : MonoBehaviour
         }
     }
 
-    public void SetYaw()
-    {
-        float yaw = yawInput * yawSpeed * Time.deltaTime;
-        transform.Rotate(Vector3.up, yaw);
-    }
-    public void SetPitch()
-    {
-        float pitch = pitchRollInput.y * pitchSpeed * Time.deltaTime;
-        transform.Rotate(Vector3.right, pitch);
-    }
+   
 
 
 
